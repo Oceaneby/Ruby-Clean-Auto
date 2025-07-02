@@ -3,10 +3,14 @@
 namespace App\Entity;
 
 use App\Repository\AdminRepository;
+use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: AdminRepository::class)]
-class Admin
+#[UniqueEntity(fields: ['email'], message: "Email indisponible.")]
+class Admin implements UserInterface, PasswordAuthenticatedUserInterface
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
@@ -41,7 +45,14 @@ class Admin
 
     public function getRoles(): array
     {
-        return $this->roles;
+         $roles = $this->roles;
+
+        if (!in_array('ROLE_ADMIN', $roles)) {
+            $roles[] = 'ROLE_ADMIN';
+        }
+
+        return array_unique($roles);
+      
     }
 
     public function setRoles(array $roles): static
@@ -61,5 +72,15 @@ class Admin
         $this->password = $password;
 
         return $this;
+    }
+
+       public function eraseCredentials(): void
+    {
+        // If you store any temporary, sensitive data on the user, clear it here
+    }
+
+    public function getUserIdentifier(): string
+    {
+        return $this->email; // Assuming "email" is the unique identifier
     }
 }
