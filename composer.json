@@ -1,0 +1,6 @@
+{
+    "require": {
+        "easycorp/easyadmin-bundle": "^4.24",
+        "symfony/webpack-encore-bundle": "^2.2"
+    }
+}
