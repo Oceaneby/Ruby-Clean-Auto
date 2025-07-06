@@ -3,7 +3,192 @@
 {% block title %}Auto Ruby Clean{% endblock %}
 
 {% block body %}
-{# <div class="blabla">
-  <img src="{{ asset('images/Logo-Charly-removebg-preview.png') }}" alt="Logo Auto Ruby Clean" class="h-40 w-auto">
-</div> #}
+<section class="relative w-full mt-8 overflow-hidden rounded-lg h-[400px]">
+  <div id="carousel" class="relative w-full h-full overflow-hidden">
+
+    <!-- Slide 1 avec fond flou et vidéo au premier plan -->
+    <div class="carousel-slide relative w-full h-full">
+      <!-- Vidéo de fond floue qui remplit tout -->
+      <video autoplay muted loop playsinline
+             class="absolute top-0 left-0 w-full h-full object-cover filter blur-sm scale-105 z-0 pointer-events-none">
+        <source src="{{ asset('Videos/Video-1.mp4') }}" type="video/mp4" />
+        Ton navigateur ne supporte pas la vidéo.
+      </video>
+        <!-- ✅ Texte par-dessus le fond flou -->
+      <div class="absolute top-1/2 left-6 transform -translate-y-1/2 z-10">
+          <div class="bg-white/20 backdrop-blur-md px-6 py-4 rounded-lg shadow-lg border border-white/30 text-white text-2xl font-semibold">
+              Particuliers<br>ET <br> Professionnels
+          </div>
+      </div>
+      <!-- Vidéo principale centrée, taille adaptée -->
+      <video autoplay muted loop playsinline
+             class="relative z-10 max-h-full max-w-none mx-auto scale-110" style="height: 400px;">
+        <source src="{{ asset('Videos/Video-1.mp4') }}" type="video/mp4" />
+        Ton navigateur ne supporte pas la vidéo.
+      </video>
+    </div>
+
+    <!-- Slide 2 -->
+    <div class="carousel-slide hidden relative w-full h-full">
+      <video autoplay muted loop playsinline
+             class="absolute top-0 left-0 w-full h-full object-cover filter blur-sm scale-110 z-0 pointer-events-none">
+        <source src="{{ asset('Videos/Video-2.mp4') }}" type="video/mp4" />
+        Ton navigateur ne supporte pas la vidéo.
+      </video>
+      <div class="absolute top-1/2 left-6 transform -translate-y-1/2 z-10">
+          <div class="bg-white/20 backdrop-blur-md px-6 py-4 rounded-lg shadow-lg border border-white/30 text-white text-2xl font-semibold">
+              Particuliers<br>ET <br> Professionnels
+          </div>
+      </div>
+      <video autoplay muted loop playsinline
+             class="relative z-10 max-h-full max-w-none mx-auto scale-110" style="height: 400px;">
+        <source src="{{ asset('Videos/Video-2.mp4') }}" type="video/mp4" />
+        Ton navigateur ne supporte pas la vidéo.
+      </video>
+    </div>
+
+    <!-- Slide 3 -->
+    <div class="carousel-slide hidden relative w-full h-full">
+      <video autoplay muted loop playsinline
+             class="absolute top-0 left-0 w-full h-full object-cover filter blur-sm scale-110 z-0 pointer-events-none">
+        <source src="{{ asset('Videos/Video-3.mp4') }}" type="video/mp4" />
+        Ton navigateur ne supporte pas la vidéo.
+      </video>
+      <div class="absolute top-1/2 left-6 transform -translate-y-1/2 z-10">
+          <div class="bg-white/20 backdrop-blur-md px-6 py-4 rounded-lg shadow-lg border border-white/30 text-white text-2xl font-semibold">
+              Particuliers<br>ET <br> Professionnels
+          </div>
+      </div>
+      <video autoplay muted loop playsinline
+             class="relative z-10 max-h-full max-w-none mx-auto scale-110" style="height: 400px;">
+        <source src="{{ asset('Videos/Video-3.mp4') }}" type="video/mp4" />
+        Ton navigateur ne supporte pas la vidéo.
+      </video>
+    </div> 
+  </div>
+</section>
+ <!-- Points navigation -->
+     <div id="carousel-dots" class="flex justify-center space-x-3 mt-4">
+      <button aria-label="Slide 1" class="w-4 h-4 rounded-full bg-gray-400 focus:outline-none"></button>
+      <button aria-label="Slide 2" class="w-4 h-4 rounded-full bg-gray-400 focus:outline-none"></button>
+      <button aria-label="Slide 3" class="w-4 h-4 rounded-full bg-gray-400 focus:outline-none"></button>
+    </div>
+
+<section class="relative bg-gray-100 py-16 px-6 sm:px-10 md:px-20 lg:px-32" id="section-text">
+  <div class="max-w-5xl mx-auto flex items-start gap-10 relative">
+
+    <!-- ✅ IMAGE STICKY ANIMÉE -->
+    <div id="float-img"
+         class="sticky top-28 h-[300px] w-48 shrink-0 translate-x-[-100px] opacity-0 transition-all duration-700 ease-out hidden sm:block">
+      <img src="{{ asset('images/Charly.webp') }}"
+           alt="Illustration"
+           class="w-full h-full object-cover rounded-lg shadow-lg" />
+    </div>
+
+    <!-- ✅ TEXTE -->
+    <div class="max-w-5xl mx-auto text-center">
+      <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-6">
+        Redonnez de l’éclat à votre véhicule avec <br> <span class="highlight-text">Auto Ruby Clean</span>
+      </h2>
+      <p class="text-gray-700 text-lg leading-relaxed mb-4">
+        Basée dans le 44, Auto Ruby Clean se spécialise dans le nettoyage mobile de véhicules, en offrant une solution
+        pratique et professionnelle directement à votre domicile, sur votre lieu de travail ou à notre atelier.
+      </p>
+      <p class="text-gray-700 text-lg leading-relaxed mb-4">
+        Fini les déplacements : nous venons à vous pour que votre véhicule soit impeccable en toute simplicité.
+        Nous proposons des prestations sur mesure, allant du lavage simple à un soin plus poussé de votre véhicule.
+      </p>
+      <p class="text-gray-700 text-lg leading-relaxed mb-4">
+        Que vous ayez une petite citadine ou un véhicule plus grand, chaque voiture bénéficie d’un traitement personnalisé.
+      </p>
+      <p class="text-gray-700 text-lg leading-relaxed">
+        Nos services visent à préserver la propreté et l’hygiène de votre véhicule, tout en vous faisant gagner du temps précieux.
+        <strong class=" highlight-text block mt-4 text-red-500">Explorez nos offres et choisissez celle qui convient le mieux à vos besoins !</strong>
+      </p>
+    </div>
+
+  </div>
+</section>
+<section class="py-16 px-6 sm:px-10 md:px-20 lg:px-32 bg-white">
+  <div class="max-w-6xl mx-auto">
+    <h2 class="text-3xl md:text-4xl font-bold text-center text-gray-800 mb-12">
+      Nos Réalisations
+    </h2>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
+      <div class="overflow-hidden rounded-lg shadow-md">
+        <img src="{{ asset('images/img1.jpg') }}" alt="Nettoyage 1" class="w-full h-56 object-cover hover:scale-105 transition-transform duration-300">
+      </div>
+      <div class="overflow-hidden rounded-lg shadow-md">
+        <img src="{{ asset('images/img2.jpg') }}" alt="Nettoyage 2" class="w-full h-56 object-cover hover:scale-105 transition-transform duration-300">
+      </div>
+      <div class="overflow-hidden rounded-lg shadow-md">
+        <img src="{{ asset('images/img3.jpg') }}" alt="Nettoyage 3" class="w-full h-56 object-cover hover:scale-105 transition-transform duration-300">
+      </div>
+      <div class="overflow-hidden rounded-lg shadow-md">
+        <img src="{{ asset('images/img4.jpg') }}" alt="Nettoyage 4" class="w-full h-56 object-cover hover:scale-105 transition-transform duration-300">
+      </div>
+    </div>
+  </div>
+</section>   
+
+<script>
+  const slides = document.querySelectorAll('.carousel-slide');
+  const dots = document.querySelectorAll('#carousel-dots button');
+  let currentIndex = 0;
+
+  const showSlide = index => {
+    slides.forEach((slide, i) => {
+      slide.classList.toggle('hidden', i !== index);
+    });
+    dots.forEach((dot, i) => {
+      if(i === index) {
+        dot.classList.remove('bg-gray-400');
+        dot.classList.add('bg-red-500');
+      } else {
+        dot.classList.remove('bg-red-500');
+        dot.classList.add('bg-gray-400');
+      }
+    });
+  };
+
+  // Initial display
+  showSlide(currentIndex);
+
+  // Click on dots
+  dots.forEach((dot, i) => {
+    dot.addEventListener('click', () => {
+      currentIndex = i;
+      showSlide(currentIndex);
+    });
+  });
+
+  // Auto-play every 5s
+  setInterval(() => {
+    currentIndex = (currentIndex + 1) % slides.length;
+    showSlide(currentIndex);
+  }, 15000);
+</script>
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const image = document.getElementById('float-img');
+    const section = document.getElementById('section-text');
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          image.classList.remove('opacity-0', 'translate-x-[-100px]');
+          image.classList.add('opacity-100', 'translate-x-0');
+        } else {
+          image.classList.remove('opacity-100', 'translate-x-0');
+          image.classList.add('opacity-0', 'translate-x-[-100px]');
+        }
+      });
+    }, {
+      threshold: 0.5
+    });
+
+    observer.observe(section);
+  });
+</script>
 {% endblock %}
