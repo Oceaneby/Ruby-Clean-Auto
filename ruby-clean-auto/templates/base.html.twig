@@ -1,17 +1,90 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="UTF-8">
-        <title>{% block title %}Auto Ruby Clean!{% endblock %}</title>
-        <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text><text y=%221.3em%22 x=%220.2em%22 font-size=%2276%22 fill=%22%23fff%22>sf</text></svg>">
-        {% block stylesheets %}
-        {% endblock %}
+	<head>
+		<meta charset="UTF-8"/>
+		<meta name="viewport" content="width=device-width, initial-scale=1"/>
+		<title>
+			{% block title %}Auto Ruby Clean!
+			{% endblock %}
+		</title>
+		<link
+		rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text><text y=%221.3em%22 x=%220.2em%22 font-size=%2276%22 fill=%22%23fff%22>sf</text></svg>"/>
 
-        {% block javascripts %}
-            {% block importmap %}{{ importmap('app') }}{% endblock %}
-        {% endblock %}
-    </head>
-    <body>
-        {% block body %}{% endblock %}
-    </body>
+		{# ✅ CSS via Webpack Encore #}
+		{% block stylesheets %}
+			{{ encore_entry_link_tags('app') }}
+		{% endblock %}
+	</head>
+	<body>
+		{# ✅ NAVBAR #}
+		<nav
+			class="navbar bg-gray-900 shadow-md flex items-center h-44">
+			<!-- Logo collé à gauche -->
+			<div class="px-6">
+				<img src="{{ asset('images/Logo-Charly-removebg-preview.png') }}" alt="Logo" class="h-40 w-auto"/>
+			</div>
+
+			<!-- Conteneur centré qui prend le reste de la largeur -->
+			<div
+				class="flex-grow max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+				<!-- Liens alignés à droite -->
+				<div class="hidden md:flex justify-end items-center space-x-16 h-44">
+					<a href="#" class="text-white hover:text-red-400 rounded-md text-2xl font-medium">Accueil</a>
+					<a href="#" class="text-white hover:text-red-400 rounded-md text-2xl font-medium">Formules Intérieurs</a>
+					<a href="#" class="text-white hover:text-red-400 rounded-md text-2xl font-medium">Formules Extérieurs</a>
+					<a href="#" class="text-white hover:text-red-400 rounded-md text-2xl font-medium">Encore plus</a>
+					<a href="#" class="text-white hover:text-red-400 rounded-md text-2xl font-medium">Galeries</a>
+					<a href="#" class="text-white hover:text-red-400 rounded-md text-2xl font-medium">Contact</a>
+				</div>
+			</div>
+
+			<!-- Mobile menu button -->
+			<div class="md:hidden px-4">
+				<button id="mobile-menu-button" type="button" class="inline-flex items-center justify-center p-2 rounded-md text-white hover:text-red-400 hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-red-600" aria-controls="mobile-menu" aria-expanded="false">
+					<span class="sr-only">Ouvrir le menu</span>
+					<!-- Icone hamburger -->
+					<svg class="block h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewbox="0 0 24 24" stroke="currentColor">
+						<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 8h16M4 16h16"/>
+					</svg>
+					<!-- Icone croix -->
+					<svg class="hidden h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewbox="0 0 24 24" stroke="currentColor">
+						<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+					</svg>
+				</button>
+			</div>
+		</nav>
+
+		<!-- Mobile menu -->
+		<div class="hidden md:hidden" id="mobile-menu">
+			<div class="px-2 pt-2 pb-3 space-y-1">
+				<a href="#" class="block text-white hover:text-red-400 px-3 py-2 rounded-md text-base font-medium">Accueil</a>
+				<a href="#" class="block text-white hover:text-red-400 px-3 py-2 rounded-md text-base font-medium">Formules Intérieurs</a>
+				<a href="#" class="block text-white hover:text-red-400 px-3 py-2 rounded-md text-base font-medium">Formules Extérieurs</a>
+				<a href="#" class="block text-white hover:text-red-400 px-3 py-2 rounded-md text-base font-medium">Encore plus</a>
+				<a href="#" class="block text-white hover:text-red-400 px-3 py-2 rounded-md text-base font-medium">Galeries</a>
+				<a href="#" class="block text-white hover:text-red-400 px-3 py-2 rounded-md text-base font-medium">Contact</a>
+			</div>
+		</div>
+
+		<script>
+			const btn = document.getElementById('mobile-menu-button');
+const menu = document.getElementById('mobile-menu');
+const iconOpen = btn.querySelector('svg.block');
+const iconClose = btn.querySelector('svg.hidden');
+
+btn.addEventListener('click', () => {
+menu.classList.toggle('hidden');
+iconOpen.classList.toggle('hidden');
+iconClose.classList.toggle('hidden');
+});
+		</script>
+
+		{# ✅ CONTENU DES PAGES #}
+		{% block body %}{% endblock %}
+
+		{# ✅ JS via Webpack Encore #}
+		{% block javascripts %}
+			{{ encore_entry_script_tags('app') }}
+		{% endblock %}
+	</body>
 </html>
