@@ -90,7 +90,7 @@ iconClose.classList.toggle('hidden');
 
 		{# Ajoute ça tout en bas du body, avant la balise </body> #}
 		{# <svg id="cursor-svg" xmlns="http://www.w3.org/2000/svg"><ellipse id="cursor-ellipse" cx="0" cy="0" rx="10" ry="10" fill="#951333"/></svg> #}
-		<footer class="navbar bg-gray-900 shadow-md text-white mt-auto">
+		<footer class=" bg-gray-900 shadow-md text-white mt-auto">
 			<div
 				class="w-full flex flex-col md:flex-row items-center justify-between py-4">
 				<!-- Logo vraiment à gauche -->
@@ -128,8 +128,9 @@ iconClose.classList.toggle('hidden');
 			<script src="{{ asset('js/cursor.js') }}"></script>
 			<script src="{{ asset('js/carousel.js') }}"></script>
 			<script src="{{ asset('js/float-img.js') }}"></script>
+			<script src="{{ asset('js/fade-in-on-scroll.js') }}"></script>
+			<script src="{{ asset('js/scrollAnimations.js') }}"></script>
 			{{ encore_entry_script_tags('app') }}
 		{% endblock %}
-
 	</body>
 </html>

@@ -22,15 +22,135 @@ body {
             transparent 10px,
             transparent 20px);
 }
+footer{
+  background-color: #2b2a28;
+    border-top: 4px solid #951333;
+    background-image: repeating-linear-gradient(45deg,
+            rgba(255, 255, 255, 0.05),
+            rgba(255, 255, 255, 0.05) 10px,
+            transparent 10px,
+            transparent 20px);
+}
 
 .highlight-text {
     color: #d20f26;
 }
-/* #cursor-svg {
-  position: fixed;
-  top: 0; left: 0;
-  width: 100%; height: 100%;
+.bg-circles {
+  background-color: #2b2a28;
+  background-image: radial-gradient(circle, rgba(149, 19, 52, 0.484) 3px, transparent 1px);
+  background-size: 30px 30px;
+  border-top: 4px solid rgb(149, 19, 51);
+ 
+}
+.bg-circles-with-arrows {
+     position: relative;
+  background-color: #2b2a28;
+  background-image: radial-gradient(circle, rgba(216, 37, 37, 0.219) 3px, transparent 3px);
+  background-size: 30px 30px;
+  border-top: 4px solid #951333;
+  overflow: hidden;
+}
+.bg-circles-with-arrows::before {
+  content: '>';
+  position: absolute;
+  left: -10%;
+  top: 20%;
+  transform: translateY(-50%);
+  font-size: 1200px;
+  color: rgba(255, 255, 0, 0.07);
+  font-weight: bold;
   pointer-events: none;
-  overflow: visible;
-  z-index: 9999;
-} */
+  z-index: 0;
+}
+.bg-circles-with-arrows::after {
+   content: '>';
+  position: absolute;
+  top: 20%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 1200px;
+  color: rgba(255, 255, 0, 0.07);
+  font-weight: bold;
+  pointer-events: none;
+  z-index: 0;
+}
+.bg-circles-with-arrows .arrow-right {
+  content: '>';
+  position: absolute;
+  top: 20%;
+  right: -10%;
+  transform: translateY(-50%);
+  font-size: 1200px;
+  color: rgba(255, 255, 0, 0.07);
+  font-weight: bold;
+  pointer-events: none;
+  z-index: 0;
+}
+
+@keyframes slide-in-right {
+  0% {
+    opacity: 0;
+    transform: translateX(100px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.animate-slide-in-right {
+  animation: slide-in-right 1s ease-out forwards;
+}
+.card-text::before,
+.card-text::after {
+  opacity: 0;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  color: #facc15; /* jaune Tailwind (yellow-400) */
+  font-weight: bold;
+  position: absolute;
+  top: 0;
+}
+
+.card-text::before {
+  content: "[";
+  left: -1.2em;
+  transform: translateX(-5px);
+}
+
+.card-text::after {
+  content: "]";
+  right: -1.2em;
+  transform: translateX(5px);
+}
+
+/* 👉 Lors du hover du parent .service-card */
+.service-card:hover .card-text::before,
+.service-card:hover .card-text::after {
+  opacity: 1;
+  transform: translateX(0);
+}
+/* Ajouter une animation pour faire apparaître le fond */
+.fade-bg {
+    opacity: 0;
+    transform: translateY(-100px); /* L'image commence au-dessus */
+    transition: opacity 1s ease, transform 1s ease;
+}
+
+/* Ajouter une animation pour faire apparaître le texte */
+.fade-text {
+    opacity: 0;
+    transform: translateY(100px); /* Le texte commence en bas */
+    transition: opacity 1s ease, transform 1s ease;
+}
+
+/* Pour l'animation de fond quand l'élément entre dans la vue */
+.show-bg {
+    opacity: 1;
+    transform: translateY(0); /* L'image glisse vers sa position finale */
+}
+
+/* Quand le texte doit apparaître après le délai du JS */
+.fade-text.delayed {
+    opacity: 1;
+    transform: translateY(0);
+}
