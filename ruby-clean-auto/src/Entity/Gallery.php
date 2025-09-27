@@ -24,7 +24,7 @@ class Gallery
     private ?string $type = null;
 
     #[ORM\Column(length: 255)]
-    private ?string $url = null;
+    private ?string $imageFilename = null;
 
     #[ORM\Column]
     private ?\DateTime $createdAt = null;
@@ -73,17 +73,18 @@ class Gallery
         return $this;
     }
 
-    public function getUrl(): ?string
+    public function getImageFilename(): ?string
     {
-        return $this->url;
+        return $this->imageFilename;
     }
 
-    public function setUrl(string $url): static
+    public function setImageFilename(string $imageFilename): static
     {
-        $this->url = $url;
+        $this->imageFilename = $imageFilename;
 
         return $this;
     }
+
 
     public function getCreatedAt(): ?\DateTime
     {

@@ -38,7 +38,7 @@
     </form>
 {% endblock %} #} 
 
-{% extends 'base.html.twig' %}
+{# {% extends 'base.html.twig' %}
 
 {% block title %}Login{% endblock %}
 
@@ -60,4 +60,111 @@
 
         <button type="submit">Login</button>
     </form>
+{% endblock %} #}
+{# {% extends 'base.html.twig' %}
+
+{% block title %}Login{% endblock %}
+
+{% block body %}
+    <div class="flex justify-center">
+        <div class="w-full max-w-md">
+            <h1 class="text-white text-2xl mb-4 text-center">Admin Login</h1>
+
+            {% if error %}
+                <div class="bg-red-500 text-white p-2 rounded mb-4">
+                    {{ error.messageKey|trans(error.messageData, 'security') }}
+                </div>
+            {% endif %}
+
+            <form action="{{ path('app_login') }}" method="post" class="space-y-4">
+                <div>
+                    <label for="email" class="text-white block mb-1">Email:</label>
+                    <input 
+                        type="text" 
+                        id="email" 
+                        name="_username" 
+                        value="{{ last_username }}" 
+                        required 
+                        autofocus 
+                        class="block  p-2 bg-gray-800 text-white border border-gray-600 rounded"
+                    >
+                </div>
+
+                <div>
+                    <label for="password" class="text-white block mb-1">Password:</label>
+                    <input 
+                        type="password" 
+                        id="password" 
+                        name="_password" 
+                        required 
+                        class="block w-full p-2 bg-gray-800 text-white border border-gray-600 rounded"
+                    >
+                </div>
+
+                <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+
+                <button 
+                    type="submit" 
+                    class="w-full bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700"
+                >
+                    Login
+                </button>
+            </form>
+        </div>
+    </div>
+{% endblock %} #}
+
+{% extends 'base.html.twig' %}
+
+{% block title %}Login{% endblock %}
+
+{% block body %}
+    <div class="flex justify-center">
+        <div class="max-w-md"> {# max-width ~28rem = 448px, ajuste si besoin #}
+            <h1 class=" text-2xl mb-4 mt-4 text-center text-white">Admin Login</h1>
+
+            {% if error %}
+                <div class="bg-red-500 text-white p-2 rounded mb-4">
+                    {{ error.messageKey|trans(error.messageData, 'security') }}
+                </div>
+            {% endif %}
+
+            <form action="{{ path('app_login') }}" method="post" class="space-y-6">
+                <div class="mb-4">
+                    <label for="email" class="text-white block mb-2">Email:</label>
+                    <input 
+                        type="text" 
+                        id="email" 
+                        name="_username" 
+                        value="{{ last_username }}" 
+                        required 
+                        autofocus 
+                        class="p-2 w-80 bg-gray-800 text-white border border-gray-600 rounded"  {# un peu plus large #}
+                    >
+                </div>
+
+                <div class="mb-4">
+                    <label for="password" class="text-white block mb-2">Password:</label>
+                    <input 
+                        type="password" 
+                        id="password" 
+                        name="_password" 
+                        required 
+                        class="p-2 w-80 bg-gray-800 text-white border border-gray-600 rounded" {# un peu plus large #}
+                    >
+                </div>
+
+                <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+
+                <div class="text-center">
+                    <button 
+                        type="submit" 
+                        class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700"
+                    >
+                        Login
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
 {% endblock %}
