@@ -5,6 +5,7 @@ namespace App\Entity;
 use App\Repository\GalleryRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: GalleryRepository::class)]
 class Gallery
@@ -20,7 +21,16 @@ class Gallery
     #[ORM\Column(type: Types::TEXT, nullable: true)]
     private ?string $description = null;
 
+    public const TYPES = ['photo', 'video'];
+    public const CATEGORIES = [
+    'Intérieur',
+    'Extérieur',
+    'Véhicules spéciaux',
+    'Nettoyage complet',
+];
+
     #[ORM\Column(length: 50)]
+    #[Assert\Choice(choices: self::TYPES, message: "Type invalide.")]
     private ?string $type = null;
 
     #[ORM\Column(length: 255)]
@@ -31,6 +41,11 @@ class Gallery
 
     #[ORM\Column(length: 100)]
     private ?string $category = null;
+
+    public function __construct()
+    {
+        $this->createdAt = new \DateTime();
+    }
 
     public function getId(): ?int
     {
