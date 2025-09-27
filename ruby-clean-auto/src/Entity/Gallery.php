@@ -21,6 +21,12 @@ class Gallery
     #[ORM\Column(type: Types::TEXT, nullable: true)]
     private ?string $description = null;
 
+    #[ORM\Column(length: 10, nullable: true)]
+    private ?string $photoType = null; // "avant" ou "apres"
+
+    #[ORM\Column(type: 'integer', nullable: true)]
+    private ?int $nettoyageNumber = null;
+
     public const TYPES = ['photo', 'video'];
     public const CATEGORIES = [
     'Intérieur',
@@ -73,6 +79,29 @@ class Gallery
     {
         $this->description = $description;
 
+        return $this;
+    }
+
+     public function getNettoyageNumber(): ?int
+    {
+        return $this->nettoyageNumber;
+    }
+
+    public function setNettoyageNumber(?int $nettoyageNumber): static
+    {
+        $this->nettoyageNumber = $nettoyageNumber;
+        return $this;
+    }
+
+    // getter et setter photoType
+    public function getPhotoType(): ?string
+    {
+        return $this->photoType;
+    }
+
+    public function setPhotoType(?string $photoType): static
+    {
+        $this->photoType = $photoType;
         return $this;
     }
 

@@ -6,16 +6,19 @@ use App\Entity\Gallery;
 use Doctrine\ORM\EntityManagerInterface;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Field\ChoiceField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\IntegerField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextareaField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\DateTimeField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\ImageField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\FileUploadField;
 use Symfony\Component\Validator\Constraints\File;
+use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use EasyCorp\Bundle\EasyAdminBundle\Field\Field;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextEditorField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
+use Symfony\Component\Validator\Constraints\Choice;
 
 class GalleryCrudController extends AbstractCrudController
 {
@@ -58,6 +61,24 @@ class GalleryCrudController extends AbstractCrudController
                 'onchange' => 'previewImage(this)', // Appelle la fonction JS
                 ],
             ]);
+
+            yield ChoiceField::new('nettoyageNumber')
+                ->setLabel('Réalisation')
+                ->setChoices([
+                    'Réalisation 1' => 1,
+                    'Réalisation 2' => 2,
+                    'Réalisation 3' => 3,
+                    'Réalisation 4' => 4,
+                ])
+                ->setRequired(true);
+
+            yield ChoiceField::new('photoType')
+                ->setLabel('Type de photo')
+                ->setChoices([
+                    'Avant' => 'avant',
+                    'Après' => 'apres',
+                ])
+                ->setRequired(true);
 
         yield DateTimeField::new('createdAt')->onlyOnIndex();
     }

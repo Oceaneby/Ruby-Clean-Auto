@@ -161,20 +161,58 @@
                 L’objectif ? Offrir à chaque client un résultat éclatant et durable, avec une attention particulière aux moindres détails.
             </p>
         </div>
-        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
+        {# <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
             <div class="overflow-hidden rounded-lg shadow-md">
-                <img src="{{ asset('images/img1.jpg') }}" alt="Nettoyage 1" class="w-full h-56 object-cover hover:scale-105 transition-transform duration-300">
+                <img src="{{ asset('images/img1.jpg') }}" alt="Réalisation 1" class="w-full h-56 object-cover hover:scale-105 transition-transform duration-300">
             </div>
             <div class="overflow-hidden rounded-lg shadow-md">
-                <img src="{{ asset('images/img2.jpg') }}" alt="Nettoyage 2" class="w-full h-56 object-cover hover:scale-105 transition-transform duration-300">
+                <img src="{{ asset('images/img2.jpg') }}" alt="Réalisation 2" class="w-full h-56 object-cover hover:scale-105 transition-transform duration-300">
             </div>
             <div class="overflow-hidden rounded-lg shadow-md">
-                <img src="{{ asset('images/img3.jpg') }}" alt="Nettoyage 3" class="w-full h-56 object-cover hover:scale-105 transition-transform duration-300">
+                <img src="{{ asset('images/img3.jpg') }}" alt="Réalisation 3" class="w-full h-56 object-cover hover:scale-105 transition-transform duration-300">
             </div>
             <div class="overflow-hidden rounded-lg shadow-md">
-                <img src="{{ asset('images/img4.jpg') }}" alt="Nettoyage 4" class="w-full h-56 object-cover hover:scale-105 transition-transform duration-300">
+                <img src="{{ asset('images/img4.jpg') }}" alt="Réalisation 4" class="w-full h-56 object-cover hover:scale-105 transition-transform duration-300">
             </div>
-        </div>
+        </div> #}
+		<div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
+    {% for i in 1..4 %}
+        {% set real = realisations[i] %}
+        {% set hasAvant = real.avant is defined and real.avant %}
+        {% set hasApres = real.apres is defined and real.apres %}
+
+        {% if hasAvant or hasApres %}
+            <article class="relative bg-white rounded-lg shadow-lg overflow-hidden transform transition-all duration-300 hover:scale-105 cursor-pointer">
+                
+				<div class="w-full h-64 flex items-center justify-center">
+                {# Image AVANT - visible par défaut (z-0), devient invisible au hover #}
+                	{% if hasAvant %}
+                    	<img src="{{ asset('uploads/gallery/' ~ real.avant.imageFilename) }}"
+                         	alt="Avant Réalisation {{ i }}"
+                         	class="w-full h-full object-contain">
+                	{% endif %}
+				</div>
+
+                {# Image APRÈS - invisible par défaut (z-10), devient visible au hover #}
+                {% if hasApres %}
+                    <img src="{{ asset('uploads/gallery/' ~ real.apres.imageFilename) }}"
+                         alt="Après Réalisation {{ i }}"
+                         class="w-full h-full object-cover absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-10">
+                {% endif %}
+
+                {# Label AVANT - visible par défaut #}
+                <div class="absolute left-1/2 bottom-4 transform -translate-x-1/2 bg-black bg-opacity-60 text-white px-4 py-1 rounded text-sm font-semibold group-hover:hidden z-20">
+                    AVANT
+                </div>
+
+                {# Label APRÈS - visible uniquement au hover #}
+                <div class="absolute left-1/2 bottom-4 transform -translate-x-1/2 bg-black bg-opacity-60 text-white px-4 py-1 rounded text-sm font-semibold hidden group-hover:block z-20">
+                    APRÈS
+                </div>
+            </article>
+        {% endif %}
+    {% endfor %}
+</div>
     </div>
 </section>
 
