@@ -29,9 +29,11 @@ class GalleryCrudController extends AbstractCrudController
 
     public function configureFields(string $pageName): iterable
     {
-        yield ImageField::new('imageFilename')
+      
+        yield ImageField::new('imageFilename', 'Aperçu')
             ->setBasePath('uploads/gallery')
-            ->onlyOnIndex(); // ou ->onlyOnDetail() pour l’affichage dans la page de détails
+            ->setTemplatePath('admin/fields/gallery_preview.html.twig')
+            ->onlyOnIndex(); 
         yield TextField::new('title');
         yield TextareaField::new('description')->hideOnIndex();
 
@@ -41,6 +43,26 @@ class GalleryCrudController extends AbstractCrudController
         yield ChoiceField::new('category')
             ->setChoices(array_combine(Gallery::CATEGORIES, Gallery::CATEGORIES))
             ->setRequired(true);
+
+
+        yield Field::new('videoFile')
+            ->setLabel('Vidéo MP4')
+            ->setFormType(FileType::class)
+            ->setRequired(false)
+            ->setFormTypeOptions([
+                'mapped' => false,
+                'constraints' => [
+                    new File([
+                        'maxSize' => '50M',
+                        'mimeTypes' => ['video/mp4'],
+                        'mimeTypesMessage' => 'Merci de télécharger une vidéo au format MP4 uniquement.',
+                    ]),
+                ],
+                'attr' => [
+                'accept' => 'video/mp4',
+                'class' => 'field-video', // pour JS
+                ],
+            ]);
 
         // Champ pour uploader l'image (non mappé)
         yield Field::new('imageFile')
@@ -70,62 +92,92 @@ class GalleryCrudController extends AbstractCrudController
                     'Réalisation 3' => 3,
                     'Réalisation 4' => 4,
                 ])
-                ->setRequired(true);
+                ->setRequired(false);
 
             yield ChoiceField::new('photoType')
-                ->setLabel('Type de photo')
+                ->setLabel('Type de photo/vidéo')
                 ->setChoices([
                     'Avant' => 'avant',
                     'Après' => 'apres',
                 ])
-                ->setRequired(true);
+                ->setRequired(false);
 
         yield DateTimeField::new('createdAt')->onlyOnIndex();
+
+       
     }
 
     public function persistEntity(EntityManagerInterface $entityManager, $entityInstance): void
-    {
-        if (!$entityInstance instanceof Gallery) return;
-
-        $entityInstance->setCreatedAt(new \DateTime());
-
-        // Gérer le fichier uploadé manuellement
-        $uploadedFile = $this->getContext()->getRequest()->files->get('Gallery')['imageFile'] ?? null;
-
-        if ($uploadedFile) {
-            $originalName = $uploadedFile->getClientOriginalName();
-            $newFilename = uniqid().'.webp';
-
-            $uploadedFile->move(
-                $this->getParameter('kernel.project_dir').'/public/uploads/gallery',
-                $newFilename
-            );
-
-            $entityInstance->setImageFilename($newFilename);
-        }
-
-        parent::persistEntity($entityManager, $entityInstance);
-    }
-
-    public function updateEntity(EntityManagerInterface $entityManager, $entityInstance): void
 {
     if (!$entityInstance instanceof Gallery) return;
 
-    // Récupérer le fichier uploadé (si présent)
-    $uploadedFile = $this->getContext()->getRequest()->files->get('Gallery')['imageFile'] ?? null;
+    $entityInstance->setCreatedAt(new \DateTime());
 
-    if ($uploadedFile) {
-        $newFilename = uniqid().'.webp';
+    $request = $this->getContext()->getRequest();
+    $type = $entityInstance->getType();
 
-        $uploadedFile->move(
-            $this->getParameter('kernel.project_dir').'/public/uploads/gallery',
+    $uploadedImage = $request->files->get('Gallery')['imageFile'] ?? null;
+    $uploadedVideo = $request->files->get('Gallery')['videoFile'] ?? null;
+
+    if ($type === 'photo' && $uploadedImage) {
+        $newFilename = uniqid() . '.webp';
+        $uploadedImage->move(
+            $this->getParameter('kernel.project_dir') . '/public/uploads/gallery',
+            $newFilename
+        );
+        $entityInstance->setImageFilename($newFilename);
+    }
+
+    if ($type === 'video' && $uploadedVideo) {
+        $newFilename = uniqid() . '.mp4';
+        $uploadedVideo->move(
+            $this->getParameter('kernel.project_dir') . '/public/uploads/gallery',
+            $newFilename
+        );
+        $entityInstance->setImageFilename($newFilename);
+    }
+
+    parent::persistEntity($entityManager, $entityInstance);
+}
+
+public function updateEntity(EntityManagerInterface $entityManager, $entityInstance): void
+{
+    if (!$entityInstance instanceof Gallery) return;
+
+    $request = $this->getContext()->getRequest();
+    $type = $entityInstance->getType();
+
+    $uploadedImage = $request->files->get('Gallery')['imageFile'] ?? null;
+    $uploadedVideo = $request->files->get('Gallery')['videoFile'] ?? null;
+
+    if ($type === 'photo' && $uploadedImage) {
+        $newFilename = uniqid() . '.webp';
+        $uploadedImage->move(
+            $this->getParameter('kernel.project_dir') . '/public/uploads/gallery',
             $newFilename
         );
 
-        // Supprimer l'ancienne image si besoin (optionnel)
         $oldFilename = $entityInstance->getImageFilename();
         if ($oldFilename) {
-            $oldFilePath = $this->getParameter('kernel.project_dir').'/public/uploads/gallery/'.$oldFilename;
+            $oldFilePath = $this->getParameter('kernel.project_dir') . '/public/uploads/gallery/' . $oldFilename;
+            if (file_exists($oldFilePath)) {
+                unlink($oldFilePath);
+            }
+        }
+
+        $entityInstance->setImageFilename($newFilename);
+    }
+
+    if ($type === 'video' && $uploadedVideo) {
+        $newFilename = uniqid() . '.mp4';
+        $uploadedVideo->move(
+            $this->getParameter('kernel.project_dir') . '/public/uploads/gallery',
+            $newFilename
+        );
+
+        $oldFilename = $entityInstance->getImageFilename();
+        if ($oldFilename) {
+            $oldFilePath = $this->getParameter('kernel.project_dir') . '/public/uploads/gallery/' . $oldFilename;
             if (file_exists($oldFilePath)) {
                 unlink($oldFilePath);
             }

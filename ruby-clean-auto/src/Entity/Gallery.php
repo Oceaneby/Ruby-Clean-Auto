@@ -6,8 +6,11 @@ use App\Repository\GalleryRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\Validator\Context\ExecutionContextInterface;
 
 #[ORM\Entity(repositoryClass: GalleryRepository::class)]
+#[Assert\Callback('validateDependentFields')]
+
 class Gallery
 {
     #[ORM\Id]
@@ -53,6 +56,20 @@ class Gallery
         $this->createdAt = new \DateTime();
     }
 
+     public function validateDependentFields(ExecutionContextInterface $context): void
+    {
+        // Si l'un des deux est rempli, l'autre doit l'être aussi
+        if (($this->nettoyageNumber && !$this->photoType) || (!$this->nettoyageNumber && $this->photoType)) {
+            $context->buildViolation('Si vous choisissez une "Réalisation", vous devez aussi choisir un "Type de photo" et inversement.')
+                ->atPath('nettoyageNumber')
+                ->addViolation();
+
+            $context->buildViolation('Si vous choisissez un "Type de photo", vous devez aussi choisir une "Réalisation" et inversement.')
+                ->atPath('photoType')
+                ->addViolation();
+        }
+    }
+
     public function getId(): ?int
     {
         return $this->id;
@@ -93,7 +110,7 @@ class Gallery
         return $this;
     }
 
-    // getter et setter photoType
+  
     public function getPhotoType(): ?string
     {
         return $this->photoType;

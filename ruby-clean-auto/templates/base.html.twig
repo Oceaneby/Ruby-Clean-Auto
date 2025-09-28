@@ -34,7 +34,7 @@
 					<a href="#" class="text-white hover:text-red-500 rounded-md text-2xl font-medium">Formules Intérieurs</a>
 					<a href="#" class="text-white hover:text-red-500 rounded-md text-2xl font-medium">Formules Extérieurs</a>
 					<a href="#" class="text-white hover:text-red-500 rounded-md text-2xl font-medium">Encore plus</a>
-					<a href="#" class="text-white hover:text-red-500 rounded-md text-2xl font-medium">Galeries</a>
+					<a href="{{ path('gallery_index') }}" class="text-white hover:text-red-500 rounded-md text-2xl font-medium">Galeries</a>
 					<a href="#" class="text-white hover:text-red-500 rounded-md text-2xl font-medium">Contact</a>
 				</div>
 			</div>
@@ -130,6 +130,7 @@ iconClose.classList.toggle('hidden');
 			<script src="{{ asset('js/float-img.js') }}"></script>
 			<script src="{{ asset('js/fade-in-on-scroll.js') }}"></script>
 			<script src="{{ asset('js/scrollAnimations.js') }}"></script>
+			<script src="{{ asset('js/gallery-upload-switcher.js') }}"></script>
 			{{ encore_entry_script_tags('app') }}
 		{% endblock %}
 	</body>

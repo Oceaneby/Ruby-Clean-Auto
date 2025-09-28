@@ -1,0 +1,12 @@
+{% if field.value is not empty %}
+    {% if field.value ends with '.mp4' %}
+        <video width="150" height="100" controls>
+            <source src="{{ asset('uploads/gallery/' ~ field.value) }}" type="video/mp4">
+            Votre navigateur ne supporte pas la vidéo.
+        </video>
+    {% else %}
+        <img src="{{ asset('uploads/gallery/' ~ field.value) }}" alt="Aperçu" style="max-height: 100px;">
+    {% endif %}
+{% else %}
+    <span style="color: red;">Aucun fichier</span>
+{% endif %}
