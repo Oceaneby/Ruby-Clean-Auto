@@ -14,15 +14,15 @@
 
     <div class="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-4 gap-4">
       {% for item in pagination %}
-        <div class="relative aspect-[2/3] w-full rounded-md overflow-hidden shadow-md">
+        <div class="relative aspect-[2/3] w-full rounded-md overflow-hidden shadow-md group">
           {% if item.type == 'photo' %}
             <img
               src="{{ asset('uploads/gallery/' ~ item.imageFilename) }}"
               alt=""
-              class="w-full h-full object-cover"
+              class="w-full h-full object-cover transition-transform duration-300 ease-in-out group-hover:scale-110"
             >
           {% elseif item.type == 'video' %}
-            <video controls class="w-full h-48 object-cover bg-black">
+            <video controls class="w-full h-full object-cover bg-black transition-transform duration-300 ease-in-out group-hover:scale-110">
               <source src="{{ asset('uploads/gallery/' ~ item.imageFilename) }}" type="video/mp4">
               Votre navigateur ne supporte pas la vidéo.
             </video>
