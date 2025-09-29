@@ -1,0 +1,45 @@
+{% if pageCount > 1 %}
+  <nav class="flex justify-center mt-6" role="navigation" aria-label="Pagination">
+    <ul class="inline-flex items-center space-x-1">
+
+      {# Previous Page #}
+      {% if previous is defined %}
+        <li>
+          <a href="{{ path(app.request.attributes.get('_route'), app.request.query.all | merge({ (pageParameterName): previous })) }}"
+             class="flex items-center justify-center w-15 h-15 rounded-full border border-gray-300 bg-white text-gray-500 hover:bg-gray-100 transition">
+            ‹
+          </a>
+        </li>
+      {% endif %}
+
+      {# Page Numbers #}
+      {% for page in pagesInRange %}
+        {% if page == current %}
+          <li>
+            <span class="flex items-center justify-center w-15 h-15 rounded-full bg-[#881726]  text-white font-semibold shadow-md">
+              {{ page }}
+            </span>
+          </li>
+        {% else %}
+          <li>
+            <a href="{{ path(app.request.attributes.get('_route'), app.request.query.all | merge({ (pageParameterName): page })) }}"
+               class="flex items-center justify-center w-15 h-15 rounded-full border border-gray-300 text-gray-700 hover:bg-gray-100 transition">
+              {{ page }}
+            </a>
+          </li>
+        {% endif %}
+      {% endfor %}
+
+      {# Next Page #}
+      {% if next is defined %}
+        <li>
+          <a href="{{ path(app.request.attributes.get('_route'), app.request.query.all | merge({ (pageParameterName): next })) }}"
+             class="flex items-center justify-center w-15 h-15 rounded-full border border-gray-300 bg-white text-gray-500 hover:bg-gray-100 transition">
+            ›
+          </a>
+        </li>
+      {% endif %}
+
+    </ul>
+  </nav>
+{% endif %}

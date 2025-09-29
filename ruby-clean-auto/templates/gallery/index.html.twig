@@ -1,39 +1,47 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Galerie Ruby Clean Auto{% endblock %}
+{% block title %}Galerie Ruby Clean Auto
+{% endblock %}
 
 {% block body %}
-<section class="py-16 px-6 sm:px-10 md:px-20 lg:px-32 bg-white">
-  <div class="max-w-6xl mx-auto">
-    <h1 class="text-3xl md:text-4xl font-bold text-center text-gray-800 mb-6">
-      Galerie Ruby‑Clean‑Auto
-    </h1>
-    <p class="text-center text-lg text-gray-600 mb-12">
+	<section
+		class="py-16 px-6 sm:px-10 md:px-20 lg:px-32 bg-white">
+		<div id="hero-section" class="mb-10 w-full h-80 sm:h-96 relative overflow-hidden">
+  
+  {# Rectangle de fond #}
+  <div id="hero-bg" class="absolute inset-0 bg-cover bg-center opacity-0 scale-95 transition duration-700"
+       style="background-image: url('{{ asset('images/fond-rouge-galerie.webp') }}');">
+  </div>
+
+  {# Rectangle avec texte #}
+  <div id="hero-content" class="absolute top-1/2 left-1/2 w-[90%] max-w-4xl h-auto py-6 px-8 bg-cover bg-center rounded-xl shadow-2xl transform -translate-x-1/2 -translate-y-1/2 opacity-0 scale-90 transition duration-700 delay-200 flex flex-col items-center justify-center text-white text-center"
+       style="background-image: url('{{ asset('images/fond-rouge-galerie.webp') }}');">
+    
+    <h1 class="text-4xl sm:text-5xl font-extrabold mb-4 leading-tight">Galerie Ruby‑Clean‑Auto</h1>
+    <p class="text-2xl sm:text-3xl font-medium leading-snug max-w-4xl">
       Découvrez nos réalisations — photos & vidéos — Explorez, inspirez-vous, et contactez-nous pour redonner vie à votre véhicule.
     </p>
-
-    <div class="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-4 gap-4">
-      {% for item in pagination %}
-        <div class="relative aspect-[2/3] w-full rounded-md overflow-hidden shadow-md group">
-          {% if item.type == 'photo' %}
-            <img
-              src="{{ asset('uploads/gallery/' ~ item.imageFilename) }}"
-              alt=""
-              class="w-full h-full object-cover transition-transform duration-300 ease-in-out group-hover:scale-110"
-            >
-          {% elseif item.type == 'video' %}
-            <video controls class="w-full h-full object-cover bg-black transition-transform duration-300 ease-in-out group-hover:scale-110">
-              <source src="{{ asset('uploads/gallery/' ~ item.imageFilename) }}" type="video/mp4">
-              Votre navigateur ne supporte pas la vidéo.
-            </video>
-          {% endif %}
-        </div>
-      {% endfor %}
-    </div>
-
-    <div class="mt-8 flex justify-center">
-      {{ knp_pagination_render(pagination) }}
-    </div>
   </div>
-</section>
-{% endblock %}
+</div>
+
+
+		<div class="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-4 gap-4">
+			{% for item in pagination %}
+				<div class="relative aspect-[2/3] w-full rounded-md overflow-hidden shadow-md group">
+					{% if item.type == 'photo' %}
+						<img src="{{ asset('uploads/gallery/' ~ item.imageFilename) }}" alt="" class="w-full h-full object-cover transition-transform duration-300 ease-in-out group-hover:scale-110">
+					{% elseif item.type == 'video' %}
+						<video controls class="w-full h-full object-cover bg-black transition-transform duration-300 ease-in-out group-hover:scale-110">
+							<source src="{{ asset('uploads/gallery/' ~ item.imageFilename) }}" type="video/mp4">
+							Votre navigateur ne supporte pas la vidéo.
+						</video>
+					{% endif %}
+				</div>
+			{% endfor %}
+		</div>
+
+		<div class="mt-8 flex justify-center">
+			{{ knp_pagination_render(pagination, 'pagination/tailwind_pagination.html.twig') }}
+		</div>
+	</div>
+</section>{% endblock %}

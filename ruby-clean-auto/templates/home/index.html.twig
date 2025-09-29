@@ -4,28 +4,28 @@
 {% endblock %}
 
 {% block body %}
-	<section class="relative w-full mt-8 overflow-hidden rounded-lg h-[400px]">
+	<section class="relative w-full mt-8 overflow-hidden rounded-lg h-[300px] sm:h-[340px] md:h-[360px] lg:h-[380px] xl:h-[400px]">
 		<div
 			id="carousel" class="relative w-full h-full overflow-hidden">
 
-			<!-- Slide 1 avec fond flou et vidéo au premier plan -->
+			<!-- Slide 1 -->
 			<div
 				class="carousel-slide relative w-full h-full">
-				<!-- Vidéo de fond floue qui remplit tout -->
+				<!-- Vidéo de fond floue -->
 				<video autoplay muted loop playsinline class="absolute top-0 left-0 w-full h-full object-cover filter blur-sm scale-105 z-0 pointer-events-none">
 					<source src="{{ asset('Videos/Video-1.mp4') }}" type="video/mp4"/>
 					Ton navigateur ne supporte pas la vidéo.
 				</video>
-				<!-- ✅ Texte par-dessus le fond flou -->
-				<div class="absolute top-1/2 left-6 transform -translate-y-1/2 z-10">
-					<div class="bg-white/20 backdrop-blur-md px-6 py-4 rounded-lg shadow-lg border border-white/30 text-white text-2xl font-semibold">
-						Particuliers<br>ET
-						<br>
-						Professionnels
+
+				<!-- Texte flottant -->
+				<div class="absolute top-1/2 left-4 sm:left-6 transform -translate-y-1/2 z-10">
+					<div class="bg-white/20 backdrop-blur-md px-4 py-2 rounded-lg shadow-md border border-white/30 text-white text-base sm:text-lg font-semibold leading-tight text-center">
+						Particuliers<br>ET<br>Professionnels
 					</div>
 				</div>
-				<!-- Vidéo principale centrée, taille adaptée -->
-				<video autoplay muted loop playsinline class="relative z-10 max-h-full max-w-none mx-auto scale-110" style="height: 400px;">
+
+				<!-- Vidéo principale -->
+				<video autoplay muted loop playsinline class="relative z-10 max-h-full max-w-full mx-auto scale-105 object-contain">
 					<source src="{{ asset('Videos/Video-1.mp4') }}" type="video/mp4"/>
 					Ton navigateur ne supporte pas la vidéo.
 				</video>
@@ -33,18 +33,16 @@
 
 			<!-- Slide 2 -->
 			<div class="carousel-slide hidden relative w-full h-full">
-				<video autoplay muted loop playsinline class="absolute top-0 left-0 w-full h-full object-cover filter blur-sm scale-110 z-0 pointer-events-none">
+				<video autoplay muted loop playsinline class="absolute top-0 left-0 w-full h-full object-cover filter blur-sm scale-105 z-0 pointer-events-none">
 					<source src="{{ asset('Videos/Video-2.mp4') }}" type="video/mp4"/>
 					Ton navigateur ne supporte pas la vidéo.
 				</video>
-				<div class="absolute top-1/2 left-6 transform -translate-y-1/2 z-10">
-					<div class="bg-white/20 backdrop-blur-md px-6 py-4 rounded-lg shadow-lg border border-white/30 text-white text-2xl font-semibold">
-						Particuliers<br>ET
-						<br>
-						Professionnels
+				<div class="absolute top-1/2 left-4 sm:left-6 transform -translate-y-1/2 z-10">
+					<div class="bg-white/20 backdrop-blur-md px-4 py-2 rounded-lg shadow-md border border-white/30 text-white text-base sm:text-lg font-semibold leading-tight text-center">
+						Particuliers<br>ET<br>Professionnels
 					</div>
 				</div>
-				<video autoplay muted loop playsinline class="relative z-10 max-h-full max-w-none mx-auto scale-110" style="height: 400px;">
+				<video autoplay muted loop playsinline class="relative z-10 max-h-full max-w-full mx-auto scale-105 object-contain">
 					<source src="{{ asset('Videos/Video-2.mp4') }}" type="video/mp4"/>
 					Ton navigateur ne supporte pas la vidéo.
 				</video>
@@ -52,22 +50,21 @@
 
 			<!-- Slide 3 -->
 			<div class="carousel-slide hidden relative w-full h-full">
-				<video autoplay muted loop playsinline class="absolute top-0 left-0 w-full h-full object-cover filter blur-sm scale-110 z-0 pointer-events-none">
+				<video autoplay muted loop playsinline class="absolute top-0 left-0 w-full h-full object-cover filter blur-sm scale-105 z-0 pointer-events-none">
 					<source src="{{ asset('Videos/Video-3.mp4') }}" type="video/mp4"/>
 					Ton navigateur ne supporte pas la vidéo.
 				</video>
-				<div class="absolute top-1/2 left-6 transform -translate-y-1/2 z-10">
-					<div class="bg-white/20 backdrop-blur-md px-6 py-4 rounded-lg shadow-lg border border-white/30 text-white text-2xl font-semibold">
-						Particuliers<br>ET
-						<br>
-						Professionnels
+				<div class="absolute top-1/2 left-4 sm:left-6 transform -translate-y-1/2 z-10">
+					<div class="bg-white/20 backdrop-blur-md px-4 py-2 rounded-lg shadow-md border border-white/30 text-white text-base sm:text-lg font-semibold leading-tight text-center">
+						Particuliers<br>ET<br>Professionnels
 					</div>
 				</div>
-				<video autoplay muted loop playsinline class="relative z-10 max-h-full max-w-none mx-auto scale-110" style="height: 400px;">
+				<video autoplay muted loop playsinline class="relative z-10 max-h-full max-w-full mx-auto scale-105 object-contain">
 					<source src="{{ asset('Videos/Video-3.mp4') }}" type="video/mp4"/>
 					Ton navigateur ne supporte pas la vidéo.
 				</video>
 			</div>
+
 		</div>
 	</section>
 	<!-- Points navigation -->
@@ -76,92 +73,86 @@
 		<button aria-label="Slide 2" class="w-4 h-4 rounded-full bg-gray-400 focus:outline-none"></button>
 		<button aria-label="Slide 3" class="w-4 h-4 rounded-full bg-gray-400 focus:outline-none"></button>
 	</div>
-
-	<section class="relative bg-gray-100 py-6 px-6 " id="section-text">
+	{# SECTION HOME #}
+	<section class="relative bg-gray-100 py-6 px-6" id="section-text">
 		<div
 			class="max-w-7xl m-0.5 mx-auto flex items-start gap-10 relative">
-
-			<!-- ✅ IMAGE STICKY ANIMÉE -->
+			<!-- IMAGE STICKY ANIMÉE -->
 			<div id="float-img" class="sticky top-28 h-[300px] w-48 shrink-0 translate-x-[-100px] opacity-0 transition-all duration-700 ease-out hidden sm:block">
 				<img src="{{ asset('images/Charly.webp') }}" alt="Illustration" class="w-full h-full object-cover rounded-lg shadow-lg"/>
 			</div>
 
-			<!-- ✅ TEXTE -->
+			<!-- TEXTE -->
 			<div class="max-w-5xl w-full mx-auto text-center">
-				<h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-6">
+				<h2 class="text-xl md:text-2xl font-bold text-gray-800 mb-6">
 					Redonnez de l’éclat à votre véhicule avec
 					<br>
 					<span class="highlight-text">Auto Ruby Clean</span>
 				</h2>
-				<p class="text-gray-700 text-2xl leading-relaxed mb-4">
-					Basée dans le 44, Auto Ruby Clean se spécialise dans le nettoyage mobile de véhicules, en offrant une solution
-																																																																																                pratique et professionnelle directement à votre domicile, sur votre lieu de travail ou à notre atelier.
+				<p class="text-gray-700 text-base leading-relaxed mb-4">
+					Basée dans le 44, Auto Ruby Clean se spécialise dans le nettoyage mobile de véhicules, en offrant une solution pratique et professionnelle directement à votre domicile, sur votre lieu de travail ou à notre atelier.
 				</p>
-				<p class="text-gray-700 text-2xl leading-relaxed mb-4">
-					Fini les déplacements : nous venons à vous pour que votre véhicule soit impeccable en toute simplicité.
-																																																																																                Nous proposons des prestations sur mesure, allant du lavage simple à un soin plus poussé de votre véhicule.
+				<p class="text-gray-700 text-base leading-relaxed mb-4">
+					Fini les déplacements : nous venons à vous pour que votre véhicule soit impeccable en toute simplicité. Nous proposons des prestations sur mesure, allant du lavage simple à un soin plus poussé de votre véhicule.
 				</p>
-				<p class="text-gray-700 text-2xl leading-relaxed mb-4">
+				<p class="text-gray-700 text-base leading-relaxed mb-4">
 					Que vous ayez une petite citadine ou un véhicule plus grand, chaque voiture bénéficie d’un traitement personnalisé.
 				</p>
-				<p class="text-gray-700 text-2xl leading-relaxed">
+				<p class="text-gray-700 text-base leading-relaxed">
 					Nos services visent à préserver la propreté et l’hygiène de votre véhicule, tout en vous faisant gagner du temps précieux.
 					<strong class="highlight-text block mt-4 text-red-500">Explorez nos offres et choisissez celle qui convient le mieux à vos besoins !</strong>
 				</p>
 			</div>
-
 		</div>
 	</section>
-	<section
-		class="bg-circles text-white py-20 relative">
-		{# <div class="arrow-right absolute">></div> #}
+	{# SECTION NOS SERVICE #}
+	<section class="bg-circles text-white py-20 relative">
 		<div class="max-w-6xl mx-auto px-6 text-center">
-			<h2 class="text-3xl md:text-4xl font-bold mb-6">Explorez Nos Services</h2>
-			<p class="text-lg text-gray-300 mb-12">
+			<h2 class="text-xl md:text-2xl font-bold mb-6">Explorez Nos Services</h2>
+			<p class="text-base text-gray-300 mb-12">
 				Que ce soit pour un nettoyage intérieur, extérieur ou simplement admirer notre travail,<br>
 				choisissez votre direction ci-dessous :
 			</p>
-
 			<div
 				class="grid grid-cols-1 md:grid-cols-3 gap-8" id="services-grid">
 				<!-- Bloc 1 -->
 				<a href="#" data-delay="0" class="service-card opacity-0 transform translate-x-10 rounded-xl p-6 flex flex-col items-center shadow-lg hover:scale-105 transition-transform duration-300">
-					<p class="card-text text-xl font-medium text-yellow-200 relative group-hover:text-yellow-100 transition-colors duration-300">Formules Intérieurs</p>
-					<img src="{{ asset('images/logo-interieur.webp') }}" alt="Nettoyage intérieur" class="h-60 w-auto object-contain mb-4">
-
+					<p class="card-text text-lg font-medium text-yellow-200 relative group-hover:text-yellow-100 transition-colors duration-300">Formules Intérieurs</p>
+					<img src="{{ asset('images/logo-interieur.webp') }}" alt="Nettoyage intérieur" class="h-60 w-auto object-contain mb-4"/>
 				</a>
 
 				<!-- Bloc 2 -->
 				<a href="#" data-delay="200" class="service-card opacity-0 transform translate-x-10 rounded-xl p-6 flex flex-col items-center shadow-lg hover:scale-105 transition-transform duration-300">
-					<p class="card-text text-xl font-medium text-yellow-200 relative group-hover:text-yellow-100 transition-colors duration-300">Formules Extérieurs</p>
-					<img src="{{ asset('images/logo-nettoyage-removebg-preview.webp') }}" alt="Nettoyage extérieur" class="h-60 w-auto object-contain mb-4">
-
+					<p class="card-text text-lg font-medium text-yellow-200 relative group-hover:text-yellow-100 transition-colors duration-300">Formules Extérieurs</p>
+					<img src="{{ asset('images/logo-nettoyage-removebg-preview.webp') }}" alt="Nettoyage extérieur" class="h-60 w-auto object-contain mb-4"/>
 				</a>
 
 				<!-- Bloc 3 -->
-				<a href="#" data-delay="400" class="service-card opacity-0 transform translate-x-10 rounded-xl p-6 flex flex-col items-center shadow-lg hover:scale-105 transition-transform duration-300">
-
-					<p class="card-text text-xl font-medium text-yellow-200 relative group-hover:text-yellow-100 transition-colors duration-300">Galerie Photos</p>
-					<img src="{{ asset('images/Galerie-photo-removebg-preview.webp') }}" alt="Galerie" class="h-65 w-auto object-contain mb-4">
+				<a href="{{ path('gallery_index') }}" data-delay="400" class="service-card opacity-0 transform translate-x-10 rounded-xl p-6 flex flex-col items-center shadow-lg hover:scale-105 transition-transform duration-300">
+					<p class="card-text text-lg font-medium text-yellow-200 relative group-hover:text-yellow-100 transition-colors duration-300">Galerie Photos</p>
+					<img src="{{ asset('images/Galerie-photo-removebg-preview.webp') }}" alt="Galerie" class="h-60 w-auto object-contain mb-4"/>
 				</a>
 			</div>
 		</div>
 	</section>
-	<section class="py-16 px-6 sm:px-10 md:px-20 lg:px-32 bg-white">
-		<div class="max-w-6xl mx-auto">
-			<h2 class="text-3xl md:text-4xl font-bold text-center text-gray-800 mb-12">
+	<section class="py-12 px-4 sm:px-6 md:px-10 lg:px-16 bg-white">
+		<div class="max-w-5xl mx-auto">
+			<h2 class="text-2xl md:text-3xl font-bold text-center text-gray-800 mb-8">
 				Nos Réalisations
 			</h2>
+
 			<!-- Bloc avec fond image derrière le texte -->
-			<div class="relative max-w-5xl mx-auto mb-12 px-6 py-8 text-center rounded-lg overflow-hidden" id="realisations">
-				<div class="absolute inset-0 bg-cover bg-center opacity-65 pointer-events-none fade-bg" style="background-image: url('{{ asset('images/fond-nos-realisation.webp') }}');"></div>
-				<div class="absolute inset-0 bg-black opacity-50 pointer-events-none"></div>
-				<p class="relative text-white font-bold text-3xl leading-relaxed z-10 fade-text">
-					Voici un aperçu concret du travail minutieux réalisé par Auto Ruby Clean.																														Chaque véhicule présenté a bénéficié d’un service personnalisé, qu’il s’agisse d’un nettoyage intérieur complet, d’un soin extérieur intensif ou d’une prestation sur mesure.<br class="hidden sm:block"/>
+			<div class="relative max-w-4xl mx-auto mb-10 px-4 py-6 text-center rounded-lg overflow-hidden" id="realisations">
+				<div class="absolute inset-0 bg-cover bg-center opacity-60 pointer-events-none fade-bg" style="background-image: url('{{ asset('images/fond-nos-realisation.webp') }}');"></div>
+				<div class="absolute inset-0 bg-black opacity-40 pointer-events-none"></div>
+				<p class="relative text-white font-semibold text-xl md:text-2xl leading-snug z-10 fade-text">
+					Voici un aperçu concret du travail minutieux réalisé par Auto Ruby Clean.
+					        Chaque véhicule présenté a bénéficié d’un service personnalisé, qu’il s’agisse d’un nettoyage intérieur complet, d’un soin extérieur intensif ou d’une prestation sur mesure.<br class="hidden sm:block"/>
 					L’objectif ? Offrir à chaque client un résultat éclatant et durable, avec une attention particulière aux moindres détails.
 				</p>
 			</div>
-			<div class="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-4 gap-10">
+
+			<div class="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-4 gap-4">
 				{% for i in 1..4 %}
 					{% set real = realisations[i] %}
 					{% set hasAvant = real.avant is defined and real.avant %}
@@ -169,12 +160,11 @@
 
 					{% if hasAvant or hasApres %}
 						<article
-							class="group bg-white rounded-lg transform transition duration-300 hover:scale-105 cursor-pointer ">
-
+							class="group bg-white rounded-lg transform transition duration-300 hover:scale-105 cursor-pointer shadow-md">
 							<!-- Bloc image fixe -->
-							<div class="relative aspect-[2/3] w-full shadow-2xl">
+							<div class="relative aspect-[2/3]  w-full shadow-lg overflow-hidden rounded-lg">
 								{% if hasAvant %}
-									<img src="{{ asset('uploads/gallery/' ~ real.avant.imageFilename) }}" alt="Avant Réalisation {{ i }}" class="w-full h-full object-cover transition-opacity duration-500 border-4 border-black shadow-2xl">
+									<img src="{{ asset('uploads/gallery/' ~ real.avant.imageFilename) }}" alt="Avant Réalisation {{ i }}" class="w-full h-full object-cover transition-opacity duration-500 border-4 border-black shadow-lg">
 								{% endif %}
 
 								{% if hasApres %}
@@ -182,21 +172,77 @@
 								{% endif %}
 
 								<!-- Zone texte AVANT / APRÈS -->
-								<div class="absolute left-1/2 bottom-4 transform -translate-x-1/2 z-20">
-									<p class="transition-opacity duration-300 bg-black text-white font-semibold py-2 px-6 rounded-md shadow-md text-xl group-hover:opacity-0">
+								<div class="absolute left-1/2 bottom-3 transform -translate-x-1/2 z-20 flex space-x-3">
+									<p class="transition-opacity duration-300 bg-black text-white font-semibold py-1.5 px-4 rounded-md shadow-md text-sm md:text-base group-hover:opacity-0">
 										AVANT
 									</p>
-									<p class="absolute inset-0 transition-opacity duration-300 bg-black text-white font-semibold py-2 px-6 rounded-md shadow-md text-xl opacity-0 group-hover:opacity-100 flex items-end justify-center">
+									<p class="absolute inset-0 transition-opacity duration-300 bg-black text-white font-semibold py-1.5 px-4 rounded-md shadow-md text-sm md:text-base opacity-0 group-hover:opacity-100 flex items-end justify-center">
 										APRÈS
 									</p>
 								</div>
 							</div>
-
 						</article>
 					{% endif %}
 				{% endfor %}
 			</div>
 		</div>
 	</section>
+	<section class="bg-circles text-white py-12 px-4 sm:px-6">
+		<div class="max-w-5xl mx-auto text-center">
+			<h2 class="text-2xl md:text-3xl font-bold mb-8">
+				⭐️ Témoignages de nos clients ⭐️
+			</h2>
 
+			<div
+				class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+				{# {% for review in reviews %} #}
+				<div class="bg-white p-4 sm:p-5 rounded-lg shadow-md">
+					<p
+						class="italic text-gray-700 text-sm md:text-base mb-3 leading-relaxed">
+						{# “{{ review.comment }}” #}
+						avis
+					</p>
+					<p
+						class="font-semibold text-gray-900 text-sm md:text-base">
+						{# {{ review.reviewerName }} #}
+						Prénom Nom
+					</p>
+					<p class="text-yellow-500 text-base">⭐️
+						{# {{ review.starRating }} #}
+						/5</p>
+				</div>
+				{# {% endfor %} #}
+			</div>
+		</div>
+	</section>
+	<section id="qui-sommes-nous" class="bg-gray-100 text-black py-12 px-4 sm:px-6 md:px-12 lg:px-20">
+		<div
+			class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+			<!-- Image réduite -->
+			<div class="w-full h-full flex justify-center">
+				<div class="max-w-xs scale-[0.85] overflow-hidden rounded-xl shadow-lg">
+					<img src="{{ asset('images/charly.webp') }}" alt="Notre équipe" class="w-full h-full object-cover">
+				</div>
+			</div>
+
+			<!-- Texte -->
+			<div>
+				<h2 class="text-2xl sm:text-3xl md:text-4xl font-bold text-black mb-6">
+					Qui sommes‑nous ?
+				</h2>
+				<p class="text-base md:text-lg text-black leading-relaxed mb-4">
+					<strong>Auto Ruby Clean</strong>
+					est bien plus qu’un simple service de nettoyage de véhicules. Nous sommes une entreprise locale basée dans le 44, fondée par des passionnés de l’automobile et du service client.
+				</p>
+				<p class="text-base md:text-lg text-black leading-relaxed mb-4">
+					Notre mission :
+					<em>redonner vie à chaque véhicule</em>, tout en offrant une expérience pratique et haut de gamme à nos clients — particuliers comme professionnels.
+				</p>
+				<p class="text-base md:text-lg text-black leading-relaxed">
+					Disponibles à domicile, en entreprise ou dans notre atelier, nous mettons tout en œuvre pour garantir
+					<strong>qualité, ponctualité et satisfaction</strong>.
+				</p>
+			</div>
+		</div>
+	</section>
 {% endblock %}
